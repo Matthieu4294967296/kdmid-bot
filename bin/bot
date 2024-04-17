@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-# Starts bot
-
-set -e
-
-docker-compose up bot
