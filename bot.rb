@@ -172,7 +172,7 @@ class Bot
     end
   rescue Exception => e
     notify_user('exception!')
-    raise e
+    return
   end
 end
 
