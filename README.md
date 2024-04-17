@@ -1,1 +1,54 @@
-# kdmid-bot
+# Kdmid bot
+
+Checks ability to make an appointment to consul
+
+## Setup
+
+Register on https://2captcha.com/ and get API key.
+
+Get order id and code from the link http://istanbul.kdmid.ru/queue/OrderInfo.aspx?id=ORDER_ID&cd=CODE
+
+Create .env file and replace variables with your values:
+
+    $ cp .env.example .env
+
+### Docker
+
+    $ bin/build && bin/start
+
+Run bot with:
+
+    $ bin/bot
+
+**How to see the browser?**
+
+View the firefox node via VNC (password: secret):
+
+    $ open vnc://localhost:5900
+
+After testing that bot works properly put command to run bot in crontab, like:
+
+    */5 * * * * cd /path/to/the/bot; bin/bot >> kdmid-bot.log 2>&1
+
+Than you can look at the log file by:
+
+    tail -f kdmid-bot.log
+
+### Locally
+
+Install ruby 3.1.2 with rbenv for example.
+
+Install browser and driver: http://watir.com/guides/drivers/
+You can use firefox with geckodriver.
+
+Setup dependencies:
+
+    $ bundle
+
+Run bot with:
+
+    $ ruby bot.rb
+
+## Issues
+
+Problems with hcaptcha: do not pass it periodically
