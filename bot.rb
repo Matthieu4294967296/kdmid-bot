@@ -126,7 +126,7 @@ class Bot
     else
       puts "Captcha element not found, continuing with the normal flow..."
       # Continue with the normal flow of the code
-  end
+    end
   end
 
   def click_make_appointment_button(driver)
@@ -155,7 +155,10 @@ class Bot
 
       #save_page(driver)
     
-      loop do
+      loop do     
+        if driver.find_elements(id: 'ctl00_MainContent_imgSecNum').any?
+          return   
+        end  
         izvini_text_present = driver.find_elements(xpath: "//p[contains(text(), 'Извините, но в настоящий момент')]").any?
         notify_user('New time for an appointment found!') unless izvini_text_present
 
@@ -173,5 +176,9 @@ class Bot
   end
 end
 
-Bot.new.check_queue
+loop do
+  Bot.new.check_queue
+  sleep 10
+end
+
 
